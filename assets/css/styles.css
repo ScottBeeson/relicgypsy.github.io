@@ -270,6 +270,15 @@ section .intro {
   display: grid;
   gap: 2.5rem;
   align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.contact-card {
+  background: var(--color-white);
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
 }
 
 .contact-info ul {
@@ -280,60 +289,8 @@ section .intro {
   gap: 0.75rem;
 }
 
-.contact-form {
-  background: var(--color-white);
-  border-radius: 24px;
-  padding: 2.5rem;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-soft);
-}
-
-.form-group {
-  display: grid;
-  gap: 0.35rem;
-  margin-bottom: 1.5rem;
-}
-
-label {
-  font-weight: 600;
-  color: var(--color-slate);
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(15, 23, 42, 0.2);
-  font-size: 1rem;
-  font-family: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-input:focus,
-textarea:focus {
-  border-color: var(--color-blue);
-  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.2);
-  outline: none;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.button[type="submit"],
-.contact-form .button {
-  width: fit-content;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.privacy {
-  font-size: 0.85rem;
-  color: var(--color-muted);
-  margin-top: 1rem;
+.contact-info .cta-group {
+  margin-top: 1.5rem;
 }
 
 .site-footer {
@@ -356,10 +313,6 @@ textarea {
 
 @media (min-width: 768px) {
   .area-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .contact-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
