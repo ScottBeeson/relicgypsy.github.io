@@ -45,7 +45,7 @@ svg {
 }
 
 .site-header {
-  background: radial-gradient(circle at top left, rgba(29, 78, 216, 0.35), rgba(15, 23, 42, 0.95)), url('assets/488033186_1221787213285854_2350346564110959971_n.jpg') center/cover;
+  background: radial-gradient(circle at top left, rgba(29, 78, 216, 0.35), rgba(15, 23, 42, 0.95)), url('../488033186_1221787213285854_2350346564110959971_n.jpg') center/cover;
   color: var(--color-white);
   padding: clamp(6rem, 10vw, 8rem) 0;
   text-align: left;
