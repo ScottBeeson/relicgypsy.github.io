@@ -1,4 +1,4 @@
-:root {
+/:root {
   --color-navy: #0f172a;
   --color-blue: #1d4ed8;
   --color-gold: #facc15;
@@ -45,7 +45,7 @@ svg {
 }
 
 .site-header {
-  background: radial-gradient(circle at top left, rgba(29, 78, 216, 0.35), rgba(15, 23, 42, 0.95)), url('https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=1600&q=80') center/cover;
+  background: radial-gradient(circle at top left, rgba(29, 78, 216, 0.35), rgba(15, 23, 42, 0.95)), url('assets/488033186_1221787213285854_2350346564110959971_n.jpg') center/cover;
   color: var(--color-white);
   padding: clamp(6rem, 10vw, 8rem) 0;
   text-align: left;
