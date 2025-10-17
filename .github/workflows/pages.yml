@@ -1,0 +1,33 @@
+name: Pages dual deploy
+on:
+  push:
+    branches: [PROD, main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # PROD (root)
+      - uses: actions/checkout@v4
+        with:
+          ref: PROD
+          path: prod
+      - name: Copy PROD
+        run: mkdir -p public && rsync -a prod/ public/ --exclude '.git' --exclude '.github'
+
+      # MAIN (/test)
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+      - name: Copy MAIN
+        run: mkdir -p public/test &&
