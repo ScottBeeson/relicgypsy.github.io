@@ -1,7 +1,7 @@
 name: Pages dual deploy
 on:
   push:
-    branches: [PROD, main]
+    branches: [prod, main]
 
 permissions:
   contents: read
@@ -16,18 +16,32 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # PROD (root)
+      # prod → site root
       - uses: actions/checkout@v4
         with:
-          ref: PROD
+          ref: prod
           path: prod
-      - name: Copy PROD
+      - name: Copy prod
         run: mkdir -p public && rsync -a prod/ public/ --exclude '.git' --exclude '.github'
 
-      # MAIN (/test)
+      # main → /test
       - uses: actions/checkout@v4
         with:
           ref: main
           path: main
-      - name: Copy MAIN
-        run: mkdir -p public/test &&
+      - name: Copy main
+        run: mkdir -p public/test && rsync -a main/ public/test/ --exclude '.git' --exclude '.github'
+
+      - run: touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
