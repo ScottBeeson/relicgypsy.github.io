@@ -134,6 +134,18 @@ h1 {
   color: var(--color-gold);
 }
 
+.button.ghost {
+  background: transparent;
+  color: var(--color-blue);
+  border-color: rgba(29, 78, 216, 0.4);
+}
+
+.button.ghost:hover,
+.button.ghost:focus {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
 .hero-meta {
   display: flex;
   flex-wrap: wrap;
@@ -291,6 +303,19 @@ section .intro {
 
 .contact-info .cta-group {
   margin-top: 1.5rem;
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 
 .site-footer {

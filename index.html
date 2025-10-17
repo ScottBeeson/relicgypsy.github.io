@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Junk Hauling by Relic Gypsy | Springfield MO Removal</title>
-  <meta name="description" content="Friendly, affordable junk hauling and waste removal in Springfield, MO. Call Relic Gypsy at (417) 379-7639 for same-day junk removal." />
+  <meta name="description" content="Friendly, affordable junk hauling and waste removal in Springfield, MO. Contact Relic Gypsy via Google Maps to book same-day junk removal." />
   <link rel="canonical" href="https://relicgypsy.github.io/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <meta property="og:title" content="Junk Hauling by Relic Gypsy | Springfield MO Removal">
-  <meta property="og:description" content="Locally trusted junk removal service serving Springfield, Missouri. Call (417) 379-7639 to book friendly, affordable hauling today." />
+  <meta property="og:description" content="Locally trusted junk removal service serving Springfield, Missouri. Connect with Relic Gypsy on Google Maps to book friendly, affordable hauling today." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://relicgypsy.github.io/" />
   <meta property="og:locale" content="en_US" />
@@ -24,6 +24,7 @@
     "name": "Junk Hauling by Relic Gypsy",
     "image": "https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&w=1600&q=80",
     "telephone": "+14173797639",
+    "hasMap": "https://www.google.com/maps/place/Relic+Gypsy/@37.1827425,-93.3782669,13z/data=!4m6!3m5!1s0x87cf6301aa304d0f:0xa8e2d274667ee4f3!8m2!3d37.1827425!4d-93.3782669!16s%2Fg%2F11b6mxxztv",
     "url": "https://relicgypsy.github.io/",
     "address": {
       "@type": "PostalAddress",
@@ -68,7 +69,7 @@
         <h1>Junk Hauling by Relic Gypsy</h1>
         <p class="tagline">Springfield's friendly, 5-star junk removal team for residential, curbside, and contractor projects.</p>
         <div class="cta-group">
-          <a class="button primary" href="tel:+14173797639">Call (417) 379-7639</a>
+          <a class="button primary" href="https://www.google.com/maps/place/Relic+Gypsy/@37.1827425,-93.3782669,13z/data=!4m6!3m5!1s0x87cf6301aa304d0f:0xa8e2d274667ee4f3!8m2!3d37.1827425!4d-93.3782669!16s%2Fg%2F11b6mxxztv" target="_blank" rel="noopener">Contact</a>
           <a class="button secondary" href="https://m.facebook.com/RelicGypsy/" target="_blank" rel="noopener">Message on Facebook</a>
         </div>
         <div class="hero-meta">
@@ -176,14 +177,16 @@
           <div class="contact-info contact-card">
             <p>Call or message now for a free estimate. Share photos via Facebook Messenger for the quickest quote.</p>
             <ul>
-              <li><strong>Phone:</strong> <a href="tel:+14173797639">(417) 379-7639</a></li>
+              <li><strong>Contact:</strong> <a href="https://www.google.com/maps/place/Relic+Gypsy/@37.1827425,-93.3782669,13z/data=!4m6!3m5!1s0x87cf6301aa304d0f:0xa8e2d274667ee4f3!8m2!3d37.1827425!4d-93.3782669!16s%2Fg%2F11b6mxxztv" target="_blank" rel="noopener">Relic Gypsy on Google Maps</a></li>
               <li><strong>Facebook:</strong> <a href="https://m.facebook.com/RelicGypsy/" target="_blank" rel="noopener">Relic Gypsy</a></li>
               <li><strong>Hours:</strong> Daily 9&nbsp;AM – 7&nbsp;PM</li>
             </ul>
             <div class="cta-group">
-              <a class="button primary" href="tel:+14173797639">Call (417) 379-7639</a>
+              <a class="button primary" href="https://www.google.com/maps/place/Relic+Gypsy/@37.1827425,-93.3782669,13z/data=!4m6!3m5!1s0x87cf6301aa304d0f:0xa8e2d274667ee4f3!8m2!3d37.1827425!4d-93.3782669!16s%2Fg%2F11b6mxxztv" target="_blank" rel="noopener">Contact</a>
+              <button class="button ghost reveal-phone" type="button" data-phone="dGVsOisxNDE3Mzc5NzYzOQ==">Show phone number</button>
               <a class="button secondary" href="https://m.facebook.com/RelicGypsy/" target="_blank" rel="noopener">Message on Facebook</a>
             </div>
+            <p class="sr-only" id="phone-status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -202,6 +205,33 @@
     if (yearSpan) {
       yearSpan.textContent = new Date().getFullYear();
     }
+
+    const revealButtons = document.querySelectorAll('.reveal-phone');
+    const phoneStatus = document.getElementById('phone-status');
+
+    function decodePhone(encoded) {
+      try {
+        return atob(encoded);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    revealButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const encoded = button.getAttribute('data-phone');
+        const decoded = encoded ? decodePhone(encoded) : null;
+
+        if (decoded) {
+          if (phoneStatus) {
+            phoneStatus.textContent = 'Phone link ready to dial.';
+          }
+          window.location.href = decoded;
+        } else if (phoneStatus) {
+          phoneStatus.textContent = 'Unable to load phone link. Please try contacting us on Google Maps.';
+        }
+      });
+    });
   </script>
 </body>
 </html>
