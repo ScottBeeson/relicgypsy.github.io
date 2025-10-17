@@ -1,0 +1,47 @@
+name: Pages dual deploy
+on:
+  push:
+    branches: [prod, main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # prod → site root
+      - uses: actions/checkout@v4
+        with:
+          ref: prod
+          path: prod
+      - name: Copy prod
+        run: mkdir -p public && rsync -a prod/ public/ --exclude '.git' --exclude '.github'
+
+      # main → /test
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+      - name: Copy main
+        run: mkdir -p public/test && rsync -a main/ public/test/ --exclude '.git' --exclude '.github'
+
+      - run: touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages }
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
